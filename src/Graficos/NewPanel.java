@@ -30,6 +30,7 @@ public class NewPanel extends JPanel implements ActionListener, MouseListener{
     private Timer timer;
     private int Delay= 20;
     private final Color color;
+    private int secuencia =0;
     
     public NewPanel(){
         timer= new Timer(Delay,this);
@@ -39,15 +40,29 @@ public class NewPanel extends JPanel implements ActionListener, MouseListener{
         
     }
     
+
     @Override
     protected void paintComponent (Graphics g){
         super.paintComponent(g);
         Image fondo = cargarImagen("fondo.png");
         g.drawImage(fondo, 0, 0,null);
-                
+        
+       /* Image gato= cargarImagen("cats.gif");
+        //10 parametros imagen a donde se va a dibujar los siguientes 5 del archivo 
+        g.drawImage(gato,x+20,320, x+132, 320+80 , (this.secuencia*132),0,(this.secuencia*132)+132,80,this);
+        */
+        
+       /*
+        Image moneda = cargarImagen("FullCoins(2).png");
+        g.drawImage(moneda, x+20, 320, x+(127/8), 320+16, (this.secuencia*(127/8)), 0, (this.secuencia* (127/8))+ (127/8), 16, this);
+        */
+       
+       Image men = cargarImagen("free_radical_game_sprites(1).png");
+       g.drawImage(men, x, 322, x+32, 322+32 ,(this.secuencia*32)+192, 192, (this.secuencia*32)+32+192, 192+32, this);
+        
         g.drawString("Puntos",600,30);
         g.drawString(": xxx",650,30);
-        
+        /*
         g.drawString("01",x+25,340);
         g.setColor(java.awt.Color.GRAY);
         g.fillOval(x+30,380, 30, 30);
@@ -57,7 +72,7 @@ public class NewPanel extends JPanel implements ActionListener, MouseListener{
         g.drawOval((x+k)+y+90,80, 30, 30);
         g.drawRect((x+k), y+60, 15,30);
         g.drawOval(400,351, 56, 56);
-        
+        */
  
     }
     
@@ -72,9 +87,14 @@ public class NewPanel extends JPanel implements ActionListener, MouseListener{
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        x += 1;
-        //y += 1;
-        detectarcolisionnes();
+        x += 5;
+        if(this.secuencia == 5){
+            this.secuencia =0;
+        }else{
+            this.secuencia++;
+        }
+            
+       // detectarcolisionnes();
         repaint();
     }
    
